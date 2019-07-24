@@ -359,6 +359,11 @@ export const constantRouterMap = [
         name: 'shopmanage',
         component: () => import('@/views/shopmanage/shopmanage'),
       },
+      {
+        path: '/product',
+        name: 'product',
+        component: () => import('@/views/product/product'),
+      },
     ]
   },
   {

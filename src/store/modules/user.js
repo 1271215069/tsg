@@ -6,11 +6,11 @@ import { queryPermissionsByUser } from '@/api/api'
 
 const user = {
   state: {
-    token: '',
-    username: '',
-    realname: '',
+    token: '999',
+    username: '666',
+    realname: '555',
     welcome: '',
-    avatar: '',
+    avatar: '222',
     permissionList: [],
     info: {}
   },
