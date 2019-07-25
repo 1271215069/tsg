@@ -12,7 +12,7 @@
             >
                 <a-select-option v-for="(item,index) in branchlist" :key="index" :value='item.val'>{{item.label}}</a-select-option>
             </a-select>
-            <a-button type="primary" style="float:right;margin-left:20px;">新增</a-button>
+            <a-button type="primary" @click.native="addpro" style="float:right;margin-left:20px;">新增</a-button>
             <a-input-search
                 placeholder="请按商品编号/产品名称/所属店铺搜索"
                 style="width:330px;float:right;"
@@ -145,6 +145,14 @@ export default {
         },
         searchnum(val){//点击右侧搜索图标的回调
             console.log(val,555)
+        },
+        addpro(){//新增产品的按钮方法
+            this.$router.push({
+                name:"editdetail",
+                query: {
+                    type:"edit"
+                }
+            })
         },
         del(record){//点击删除的方法
             this.deldata.show=true;
