@@ -352,7 +352,8 @@ export default {
             this.editshop.wxcode.push(file);
             console.log(this.editshop.wxcode,55555)
             this.getObjectURL(file);
-            return false;
+            console.log(this.editshop.wxcodeurl,333)
+            return true;
         },
         wxremove(){//删除上传微信二维码文件的回调
             this.editshop.wxcode=[];
