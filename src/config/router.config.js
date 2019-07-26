@@ -375,10 +375,16 @@ export const constantRouterMap = [
         component: () => import('@/views/product/editdetail'),
       },
       {
+        path: '/orderlist',
+        name: 'orderlist',
+        component: () => import('@/views/order/orderlist'),
+      },
+      {
         path: '/approval/orderapproval',
         name: 'orderapproval',
         component: () => import('@/views/approval/order'),
-      }
+      },
+      
     ]
   },
   {
