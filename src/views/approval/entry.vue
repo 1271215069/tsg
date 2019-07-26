@@ -1,5 +1,5 @@
 <template>
-    <div class="order_approval">
+    <div class="entry_approval">
         <div class="search">
             <a-input-search
                 placeholder="请按商品编号/产品名称/所属店铺搜索"
@@ -9,35 +9,20 @@
         </div>
         <div class="main">
             <a-table class="detaillist" :columns="columns" :dataSource="tabdata" :pagination="false">
-                <span slot="voucher" slot-scope="text,record">
-                    <a @click.prevent="see(record)">点击查看</a>
-                </span>
                 <span slot="ope" slot-scope="text,record">
                     <a @click.prevent="examine(record)">审核</a>
                 </span>
             </a-table>
             <a-pagination
-                    class="fy"
-                    :total="pagedata.total"
-                    :showTotal="total => `总共 ${total} 条`"
-                    :pageSize="pagedata.pagesize"
-                    :current="pagedata.current"
-                    :defaultCurrent="1"
-                    :hideOnSinglePage='true'
-                />
+                class="fy"
+                :total="pagedata.total"
+                :showTotal="total => `总共 ${total} 条`"
+                :pageSize="pagedata.pagesize"
+                :current="pagedata.current"
+                :defaultCurrent="1"
+                :hideOnSinglePage='true'
+            />
         </div>
-
-        <!-- 查看支付凭证的弹窗 -->
-        <a-modal    
-            v-model="voucherimg.show"
-            wrapClassName="approval_voucherimg"
-            :title='voucherimg.title'
-            width='800px'
-            :centered='true'
-            :footer="null"
-            >
-            <img v-if="voucherimg.data.voucher" :src="voucherimg.data.voucher" style="display:block;width:80%;margin:20px auto;" alt="">
-        </a-modal>
 
         <!-- 审核的弹窗 -->
         <a-modal
@@ -61,7 +46,6 @@
                 </li>
             </ul>
         </a-modal>
-
     </div>
 </template>
 <script>
@@ -70,51 +54,39 @@ export default {
         return{
             columns:[
                 {
-                    title:"订单编号",
-                    dataIndex: 'num',
-                    key: 'num',
+                    title:"入职员工",
+                    dataIndex: 'name',
+                    key: 'name',
                     align:"center",
                 },
                 {
-                    title:"产品",
-                    dataIndex: 'proname',
-                    key: 'proname',
+                    title:"手机号码",
+                    dataIndex: 'tel',
+                    key: 'tel',
                     align:"center",
                 },
                 {
-                    title:"业务员",
-                    dataIndex: 'salesman',
-                    key: 'salesman',
+                    title:"上级业务员",
+                    dataIndex: 'supname',
+                    key: 'supname',
                     align:"center",
                 },
                 {
-                    title:"购买客户",
-                    dataIndex: 'customer',
-                    key: 'customer',
+                    title:"上级手机号码",
+                    dataIndex: 'suptel',
+                    key: 'suptel',
                     align:"center",
                 },
                 {
-                    title:"购买金额",
-                    dataIndex: 'price',
-                    key: 'price',
+                    title:"入职时间",
+                    dataIndex: 'entrytime',
+                    key: 'entrytime',
                     align:"center",
                 },
                 {
-                    title:"数量",
-                    dataIndex: 'amount',
-                    key: 'amount',
-                    align:"center",
-                },
-                {
-                    title:"结算方式",
-                    dataIndex: 'type',
-                    key: 'type',
-                    align:"center",
-                },
-                {
-                    title: '支付凭证',
-                    key: 'voucher',
-                    scopedSlots: { customRender: 'voucher' },
+                    title:"所属分店",
+                    dataIndex: 'store',
+                    key: 'store',
                     align:"center",
                 },
                 {
@@ -126,27 +98,20 @@ export default {
             ],
             tabdata:[
                 {
-                    key:'1',
-                    id:'20',
-                    num:'1354654654655316',
-                    proname:'紫砂罐',
-                    salesman:'林大美',
-                    customer:'张春春',
-                    price:'20000',
-                    amount:'2',
-                    type:'现金支付',
-                    voucher:"https://hbimg.huabanimg.com/0d925bd33b9671d6ecf84c4b7c9d1113cb675b211d20e-ZCPm71_fw658",
+                    key:"1",
+                    id:"36",
+                    name:"张小伟",
+                    tel:"15658556234",
+                    supname:"陈美琳",
+                    suptel:"15332669564",
+                    entrytime:"2019-03-25",
+                    store:"杭州分店"
                 }
             ],
             pagedata:{//分页数据
                 pagesize:5,
                 current:1,
                 total:100//总条数
-            },
-            voucherimg:{//支付凭证弹窗的配置
-                show:false,
-                title:"支付凭证",
-                data:{}
             },
             examinedata:{//审核弹窗的配置
                 show:false,
@@ -171,11 +136,7 @@ export default {
         searchnum(val){//右上方搜索框的方法
 
         },
-        see(record){//列表点击查看凭证的方法
-            this.voucherimg.show=true;
-            this.voucherimg.data=record;
-        },
-        examine(record){//列表点击审核的方法
+        examine(record){//列表点击审核按钮的方法
             this.examinedata.show=true;
             this.examinedata.data=record;
         },
@@ -186,7 +147,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.order_approval{
+.entry_approval{
     background: #fff;
     box-sizing: border-box;
     padding: 20px;

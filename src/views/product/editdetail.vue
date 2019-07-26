@@ -35,8 +35,8 @@
         <div class="detaillist">
             <span class="title">单位：</span>
             <div class="contant">
-                <a-select v-model="prodata.unit" class="einput">
-                    <a-select-option v-for="item in unitopo"  :value="item.val">{{item.label}}</a-select-option>
+                <a-select v-model="prodata.unit" class="einput" placeholder="请选择">
+                    <a-select-option v-for="item in unitopo"  :key="item.val">{{item.label}}</a-select-option>
                 </a-select>
             </div>
         </div>

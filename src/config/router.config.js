@@ -15,34 +15,34 @@ export const asyncRouterMap = [
     children: [
 
       // dashboard
-      {
-        path: '/dashboard',
-        name: 'dashboard',
-        redirect: '/dashboard/workplace',
-        component: RouteView,
-        meta: { title: '仪表盘', icon: 'dashboard', permission: [ 'dashboard' ] },
-        children: [
-          {
-            path: '/dashboard/analysis',
-            name: 'Analysis',
-            component: () => import('@/views/dashboard/Analysis'),
-            meta: { title: '分析页', permission: [ 'dashboard' ] }
-          },
-          {
-            path: '/dashboard/monitor',
-            name: 'Monitor',
-            hidden: true,
-            component: () => import('@/views/dashboard/Monitor'),
-            meta: { title: '监控页', permission: [ 'dashboard' ] }
-          },
-          {
-            path: '/dashboard/workplace',
-            name: 'Workplace',
-            component: () => import('@/views/dashboard/Workplace'),
-            meta: { title: '工作台', permission: [ 'dashboard' ] }
-          }
-        ]
-      },
+      // {
+      //   path: '/dashboard',
+      //   name: 'dashboard',
+      //   redirect: '/dashboard/workplace',
+      //   component: RouteView,
+      //   meta: { title: '仪表盘', icon: 'dashboard', permission: [ 'dashboard' ] },
+      //   children: [
+      //     {
+      //       path: '/dashboard/analysis',
+      //       name: 'Analysis',
+      //       component: () => import('@/views/dashboard/Analysis'),
+      //       meta: { title: '分析页', permission: [ 'dashboard' ] }
+      //     },
+      //     {
+      //       path: '/dashboard/monitor',
+      //       name: 'Monitor',
+      //       hidden: true,
+      //       component: () => import('@/views/dashboard/Monitor'),
+      //       meta: { title: '监控页', permission: [ 'dashboard' ] }
+      //     },
+      //     {
+      //       path: '/dashboard/workplace',
+      //       name: 'Workplace',
+      //       component: () => import('@/views/dashboard/Workplace'),
+      //       meta: { title: '工作台', permission: [ 'dashboard' ] }
+      //     }
+      //   ]
+      // },
       
       // // forms
       // {
@@ -354,12 +354,12 @@ export const constantRouterMap = [
     meta: { title: '首页' },
     redirect: '/shopmanage',
     children: [
-      {
+      {//店铺管理页
         path: '/shopmanage',
         name: 'shopmanage',
         component: () => import('@/views/shopmanage/shopmanage'),
       },
-      {
+      {//产品管理页
         path: '/product',
         name: 'product',
         component: () => import('@/views/product/product'),
@@ -374,31 +374,46 @@ export const constantRouterMap = [
         name: 'editdetail',
         component: () => import('@/views/product/editdetail'),
       },
-      {
+      {//订单管理页
         path: '/orderlist',
         name: 'orderlist',
         component: () => import('@/views/order/orderlist'),
       },
-      {
-        path: '/approval/orderapproval',
-        name: 'orderapproval',
+      {//订单结算审批页
+        path: '/approval/order',
+        name: 'orderappro',
         component: () => import('@/views/approval/order'),
+      },
+      {//折扣审批页
+        path: '/approval/discount',
+        name: 'discountappro',
+        component: () => import('@/views/approval/discount'),
+      },
+      {//入职审批页
+        path: '/approval/entry',
+        name: 'entryappro',
+        component: () => import('@/views/approval/entry'),
+      },
+      {//采购报销审批页
+        path: '/approval/reim',
+        name: 'reim',
+        component: () => import('@/views/approval/reim'),
       },
       
     ]
   },
-  {
-    path: '/test',
-    component: BlankLayout,
-    redirect: '/test/home',
-    children: [
-      {
-        path: 'home',
-        name: 'TestHome',
-        component: () => import('@/views/Home')
-      }
-    ]
-  },
+  // {
+  //   path: '/test',
+  //   component: BlankLayout,
+  //   redirect: '/test/home',
+  //   children: [
+  //     {
+  //       path: 'home',
+  //       name: 'TestHome',
+  //       component: () => import('@/views/Home')
+  //     }
+  //   ]
+  // },
   {
     path: '/404',
     component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404')

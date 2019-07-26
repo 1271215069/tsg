@@ -107,6 +107,7 @@ export default {
             tabdata:[//table内的数据
                 {
                     key:'1',
+                    id:"20",
                     num:'1354654654655316',
                     proname:'紫砂罐',
                     salesman:'林大美',
