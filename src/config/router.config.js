@@ -379,6 +379,13 @@ export const constantRouterMap = [
         name: 'orderlist',
         component: () => import('@/views/order/orderlist'),
       },
+      {//订单管理页
+        path: '/stafflist',
+        name: 'stafflist',
+        component: () => import('@/views/staff/stafflist'),
+      },
+
+
       {//订单结算审批页
         path: '/approval/order',
         name: 'orderappro',
