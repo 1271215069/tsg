@@ -24,23 +24,58 @@
                     <a @click.prevent="lookup(record)">查看</a>
                 </span>
                 <span slot="ope" slot-scope="text,record">
-                    <a>详情</a>
+                    <a @click.prevent="godetail(record)">详情</a>
                     <a-divider type="vertical" />
-                    <a>冻结</a>
+                    <a v-if="record.frozen=='0'" @click.prevent="showfrozen(record)">冻结</a>
+                    <a v-if="record.frozen=='1'" @click.prevent="showfrozen(record)">解冻</a>
                 </span>
             </a-table>
         </div>
+        <!-- 确认冻结弹窗 -->
+        <a-modal v-model="frozendata.show" :title="frozendata.title" centered @ok="frozenok">
+            <div style="text-align:center;">确定对该员工账号进行{{frozendata.text}}吗？</div>
+        </a-modal>
+        <!-- 团队成员查看弹窗 -->
         <a-modal    
             v-model="memberdata.show"
-            wrapClassName="approval_member"
+            wrapClassName="staff_member"
+            width='900px'
+            title="团队成员"
+            :centered='true'
+            :footer="null"
+            :zIndex='1100'
+            >
+            <div class="memberdetil">
+                <div class="supperson">
+                    <p>
+                        <span class="title">上级业务员：</span>林梅西
+                    </p>
+                    <p>
+                        <span class="title">上上级业务员：</span>陈丽梅
+                    </p>
+                </div>
+                <div class="subperson">
+                    <span class="title">下级业务员：</span>
+                    <ul class="sublist">
+                        <li>陈丽妃（提供收益：25894.53元，下级：490个）<a-icon @click.native="showmedetail" type="down-square" style="color:#1890FF;cursor: pointer;"/></li>
+                        <li>陈丽妃（提供收益：25894.53元，下级：490个）<a-icon @click.native="showmedetail" type="down-square" style="color:#1890FF;cursor: pointer;"/></li>
+                    </ul>
+                </div>
+              </div>
+        </a-modal>
+        <!-- 下下级成员查看弹窗 -->
+        <a-modal
+            v-model="medetaildata.show"
+            wrapClassName="staff_member"
             width='800px'
             :centered='true'
             :footer="null"
-            >
-            <div class="memberdetil">
-                <p>团队成员</p>
-                
-            </div>
+            :zIndex='1200'
+        >
+            <ul class="subperlist">
+                <li>陈丽妃（提供收益：25894.53元）</li>
+                <li>陈丽妃（提供收益：25894.53元）</li>
+            </ul>
         </a-modal>
     </div>
 </template>
@@ -129,10 +164,33 @@ export default {
                     achieve:'300000.00',
                     ordernum:'3495',
                     moneyback:'100%',
-                    ranking:'1'
+                    ranking:'1',
+                    frozen:'0',//员工是否冻结，0正常，1冻结
+                },
+                {
+                    key:'2',
+                    id:'20',
+                    name:'杨大礼',
+                    tel:'15959400909',
+                    levl:'Lv.5',
+                    achieve:'300000.00',
+                    ordernum:'3495',
+                    moneyback:'100%',
+                    ranking:'1',
+                    frozen:'1',//员工是否冻结，0正常，1冻结
                 }
             ],
+            frozendata:{//冻结弹窗配置
+                show:false,
+                data:{},
+                title:"",
+                text:""
+            },
             memberdata:{//团队成员弹窗配置
+                show:false,
+                data:{}
+            },
+            medetaildata:{//下下级业务员弹窗配置
                 show:false,
                 data:{}
             }
@@ -149,10 +207,36 @@ export default {
         searchnum(val){//点击右侧搜索图标的回调
             console.log(val,555)
         },
+        showfrozen(record){//列表点击冻结的按钮回调
+            this.frozendata.show=true;
+            if(record.frozen=='0'){
+                this.frozendata.title="冻结员工";
+                this.frozendata.text="冻结";
+            }else if(record.frozen=='1'){
+                this.frozendata.title="解冻员工";
+                this.frozendata.text="解冻";
+            }
+            this.frozendata.data=record;
+        },
+        frozenok(){//确认冻结或解冻的方法
+
+        },
+        godetail(record){//列表点击详情的按钮回调
+            this.$router.push({
+                name:"staffdetail",
+                query:{
+                    id:record.id
+                }
+            })
+        },
         lookup(record){//列表点击查看的按钮回调
             this.memberdata.show=true;
             this.memberdata.data=record;
-        }
+        },
+        showmedetail(){//弹窗内点击查看下下级业务员的按钮方法
+            this.medetaildata.show=true;
+        },
+        
     }
 }
 </script>

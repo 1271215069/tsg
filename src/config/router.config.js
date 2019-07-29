@@ -379,12 +379,16 @@ export const constantRouterMap = [
         name: 'orderlist',
         component: () => import('@/views/order/orderlist'),
       },
-      {//订单管理页
+      {//员工管理页
         path: '/stafflist',
         name: 'stafflist',
         component: () => import('@/views/staff/stafflist'),
       },
-
+      {//员工详情页
+        path: '/staffdetail',
+        name: 'staffdetail',
+        component: () => import('@/views/staff/staffdetail'),
+      },
 
       {//订单结算审批页
         path: '/approval/order',
@@ -406,7 +410,6 @@ export const constantRouterMap = [
         name: 'reim',
         component: () => import('@/views/approval/reim'),
       },
-      
     ]
   },
   // {
