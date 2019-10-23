@@ -13,7 +13,8 @@ export default {
         return{
             files:"",
             expect:"",
-            feature:""
+            feature:"",
+            nowfix:""
         }
     }
 }
