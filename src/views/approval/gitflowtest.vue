@@ -3,6 +3,7 @@
       <div>
           添加了新功能
       </div>
+      <span>kkk</span>
   </div>
 </template>
 
@@ -17,7 +18,8 @@ export default {
             nowfix:"",
             gg:""
         }
-    }
+    },
+    
 }
 </script>
 
