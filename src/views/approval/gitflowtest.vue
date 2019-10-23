@@ -12,7 +12,8 @@ export default {
     data(){
         return{
             files:"",
-            expect:""
+            expect:"",
+            feature:""
         }
     }
 }
