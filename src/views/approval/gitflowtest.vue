@@ -11,7 +11,8 @@ export default {
     name:"gitflowtest",
     data(){
         return{
-            files:""
+            files:"",
+            expect:""
         }
     }
 }
