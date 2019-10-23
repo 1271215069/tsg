@@ -8,7 +8,12 @@
 
 <script>
 export default {
-    name:"gitflowtest"
+    name:"gitflowtest",
+    data(){
+        return{
+            
+        }
+    }
 }
 </script>
 
