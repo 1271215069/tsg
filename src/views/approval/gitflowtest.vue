@@ -14,7 +14,8 @@ export default {
             files:"",
             expect:"",
             feature:"",
-            nowfix:""
+            nowfix:"",
+            gg:""
         }
     }
 }
