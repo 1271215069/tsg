@@ -14,9 +14,6 @@ export default {
         return{
             files:"",
             expect:"",
-            feature:"",
-            nowfix:"",
-            gg:""
         }
     },
     
